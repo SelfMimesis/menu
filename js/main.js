@@ -112,11 +112,11 @@ function setupOverlayTriggers(kiosk, videoSystem) {
       return;
     }
 
-    playOverlaySequence(videoSystem.overlayVideos);
+    playOverlaySequence(videoSystem);
   });
 }
 
-function playOverlaySequence(overlayVideos) {
+function playOverlaySequence({ baseVideo, overlayVideos }) {
   const [firstOverlay, secondOverlay] = overlayVideos;
   const runId = state.overlayRunId + 1;
   let secondStarted = false;
@@ -160,9 +160,7 @@ function playOverlaySequence(overlayVideos) {
       return;
     }
 
-    hideOverlay(secondOverlay);
-    cleanupOverlay(firstOverlay);
-    cleanupOverlay(secondOverlay);
+    returnToBaseVideo(baseVideo, overlayVideos);
   };
   secondOverlay.onerror = secondOverlay.onended;
 
@@ -196,6 +194,15 @@ function hideOverlay(video) {
       prepareOverlay(video, video.getAttribute("src"));
     }
   }, OVERLAY_FADE_MS);
+}
+
+function returnToBaseVideo(baseVideo, overlayVideos) {
+  restartBaseVideo(baseVideo);
+
+  overlayVideos.forEach((video) => {
+    hideOverlay(video);
+    cleanupOverlay(video);
+  });
 }
 
 function resetOverlay(video) {

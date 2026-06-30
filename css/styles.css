@@ -667,10 +667,7 @@ button:focus-visible {
   position: relative;
   contain: paint;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 44% 34%, rgba(207, 206, 201, 0.08), transparent 28%),
-    linear-gradient(180deg, rgba(83, 131, 123, 0.55), rgba(59, 114, 111, 0.28)),
-    var(--main-bg);
+  background: var(--main-bg);
   border: 5px solid rgba(47, 47, 41, 0.54);
   box-shadow:
     inset 0 0 26px rgba(47, 47, 41, 0.5),
@@ -692,9 +689,9 @@ button:focus-visible {
 
 .video-layer {
   position: absolute;
-  inset: 14px;
-  width: calc(100% - 28px);
-  height: calc(100% - 28px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   opacity: 0;
   background: var(--main-bg);
@@ -716,7 +713,7 @@ button:focus-visible {
 
 .video-lines {
   position: absolute;
-  inset: 14px;
+  inset: 0;
   z-index: 3;
   pointer-events: none;
   opacity: 0.25;
