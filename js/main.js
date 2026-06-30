@@ -197,6 +197,8 @@ function hideOverlay(video) {
 }
 
 function returnToBaseVideo(baseVideo, overlayVideos) {
+  baseVideo.loop = true;
+  baseVideo.classList.add("is-active");
   restartBaseVideo(baseVideo);
 
   overlayVideos.forEach((video) => {
