@@ -6,8 +6,7 @@ const videos = [
 
 const BASE_WIDTH = 1920;
 const BASE_HEIGHT = 1080;
-const DNA_FRAME_RATE = 24;
-const DNA_FRAME_DURATION = 1000 / DNA_FRAME_RATE;
+const DISPLAY_TITLE = "TRANSROLLINHYFA";
 
 const state = {
   currentIndex: 0,
@@ -25,10 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("videoB")
   ];
   const menuList = document.getElementById("menuList");
-  const leftPanel = document.querySelector(".left-panel");
 
   setupViewportScale(kiosk);
-  setupDnaBackground(leftPanel);
   setupScrollControls(menuList);
   setupMenuSelection(menuList);
   setupAuxiliaryButtons();
@@ -50,58 +47,6 @@ function setupViewportScale(kiosk) {
 
   resizeScreen();
   window.addEventListener("resize", resizeScreen);
-}
-
-function setupDnaBackground(panel) {
-  if (!panel) {
-    return;
-  }
-
-  let lastFrame = 0;
-  const startTime = performance.now();
-
-  panel.style.setProperty("--dna-frame-duration", `${DNA_FRAME_DURATION.toFixed(2)}ms`);
-
-  const renderFrame = (timestamp) => {
-    if (timestamp - lastFrame >= DNA_FRAME_DURATION) {
-      const elapsed = (timestamp - startTime) / 1000;
-      const mainRotation = -18 + elapsed * 13.85;
-      const haloRotation = 18 - elapsed * 10.59;
-      const driftX = Math.sin(elapsed * 0.42) * 10;
-      const driftY = Math.cos(elapsed * 0.37) * -12;
-      const mainScale = 1 + Math.sin(elapsed * 0.5) * 0.018;
-      const haloScale = 1.02 + Math.cos(elapsed * 0.28) * 0.018;
-      const posX = wrap(elapsed * 5.92, 154);
-      const posY = wrap(-elapsed * 3.92, 102);
-      const haloX = wrap(elapsed * 7.06, 240);
-      const haloY = wrap(-elapsed * 4.24, 144);
-      const headerX = wrap(elapsed * 24, 192);
-      const headerY = wrap(-elapsed * 24, 192);
-      const headerTabX = wrap(elapsed * 18, 144);
-      const headerTabY = wrap(-elapsed * 18, 144);
-
-      panel.style.setProperty("--dna-pos-a", `${formatPx(posX)} ${formatPx(posY)}`);
-      panel.style.setProperty("--dna-pos-b", `${formatPx(posX + 77)} ${formatPx(posY + 51)}`);
-      panel.style.setProperty("--dna-pos-c", `${formatPx(posX)} ${formatPx(posY)}`);
-      panel.style.setProperty("--dna-pos-d", `${formatPx(posX + 77)} ${formatPx(posY + 51)}`);
-      panel.style.setProperty("--dna-rotate", `${formatNumber(mainRotation)}deg`);
-      panel.style.setProperty("--dna-x", formatPx(driftX));
-      panel.style.setProperty("--dna-y", formatPx(driftY));
-      panel.style.setProperty("--dna-scale", formatNumber(mainScale));
-      panel.style.setProperty("--dna-halo-pos-a", `${formatPx(haloX)} ${formatPx(haloY)}`);
-      panel.style.setProperty("--dna-halo-pos-b", `${formatPx(wrap(elapsed * 6.59, 224))} 0px`);
-      panel.style.setProperty("--dna-halo-rotate", `${formatNumber(haloRotation)}deg`);
-      panel.style.setProperty("--dna-halo-scale", formatNumber(haloScale));
-      panel.style.setProperty("--header-stripe-pos", `${formatPx(headerX)} ${formatPx(headerY)}`);
-      panel.style.setProperty("--header-tab-stripe-pos", `${formatPx(headerTabX)} ${formatPx(headerTabY)}`);
-
-      lastFrame = timestamp - ((timestamp - lastFrame) % DNA_FRAME_DURATION);
-    }
-
-    requestAnimationFrame(renderFrame);
-  };
-
-  requestAnimationFrame(renderFrame);
 }
 
 function setupPlayerAttributes(players) {
@@ -239,7 +184,7 @@ function swapPlayers(incoming, outgoing, incomingIndex, videoIndex, frame, plaqu
   state.switching = false;
 
   frame.classList.remove("no-media");
-  plaque.textContent = "FOOD MENU";
+  plaque.textContent = DISPLAY_TITLE;
   setActiveButton(videoIndex);
   preloadNextVideo(outgoing, getNextIndex(videoIndex));
 }
@@ -351,16 +296,4 @@ function getPreviousIndex(index) {
 
 function normalizeIndex(index) {
   return (index + videos.length) % videos.length;
-}
-
-function wrap(value, max) {
-  return ((value % max) + max) % max;
-}
-
-function formatPx(value) {
-  return `${formatNumber(value)}px`;
-}
-
-function formatNumber(value) {
-  return value.toFixed(2);
 }

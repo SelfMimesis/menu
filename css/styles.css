@@ -131,7 +131,6 @@ button:focus-visible {
   background:
     linear-gradient(90deg, transparent 0 48%, rgba(207, 206, 201, 0.16) 49% 51%, transparent 52%),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 5px);
-  mix-blend-mode: soft-light;
 }
 
 .left-panel,
@@ -141,23 +140,9 @@ button:focus-visible {
 }
 
 .left-panel {
-  --dna-frame-duration: 42ms;
-  --dna-pos-a: 0px 0px;
-  --dna-pos-b: 77px 51px;
-  --dna-pos-c: 0px 0px;
-  --dna-pos-d: 77px 51px;
-  --dna-rotate: -18deg;
-  --dna-x: 0px;
-  --dna-y: 0px;
-  --dna-scale: 1;
-  --dna-halo-pos-a: 0px 0px;
-  --dna-halo-pos-b: 0px 0px;
-  --dna-halo-rotate: 18deg;
-  --dna-halo-scale: 1;
-  --header-stripe-pos: 0px 0px;
-  --header-tab-stripe-pos: 0px 0px;
   display: grid;
   grid-template-rows: 134px 1fr;
+  contain: paint;
   min-width: 0;
   overflow: hidden;
   background:
@@ -176,7 +161,6 @@ button:focus-visible {
   z-index: 0;
   content: "";
   pointer-events: none;
-  mix-blend-mode: screen;
 }
 
 .left-panel::before {
@@ -192,23 +176,14 @@ button:focus-visible {
     154px 102px,
     154px 102px,
     154px 102px;
-  filter:
-    drop-shadow(0 0 5px rgba(114, 205, 202, 0.36))
-    drop-shadow(0 0 12px rgba(83, 131, 123, 0.18));
   background-position:
-    var(--dna-pos-a),
-    var(--dna-pos-b),
-    var(--dna-pos-c),
-    var(--dna-pos-d);
+    0 0,
+    77px 51px,
+    0 0,
+    77px 51px;
   transform-origin: 50% 50%;
-  transform:
-    rotate(var(--dna-rotate))
-    translate3d(var(--dna-x), var(--dna-y), 0)
-    scale(var(--dna-scale));
-  transition:
-    background-position var(--dna-frame-duration) linear,
-    transform var(--dna-frame-duration) linear;
-  will-change: background-position, transform;
+  animation: dnaFloat 34s linear infinite;
+  will-change: transform;
 }
 
 .left-panel::after {
@@ -220,18 +195,12 @@ button:focus-visible {
   background-size:
     240px 144px,
     224px 100%;
-  filter: drop-shadow(0 0 10px rgba(114, 205, 202, 0.25));
   background-position:
-    var(--dna-halo-pos-a),
-    var(--dna-halo-pos-b);
+    0 0,
+    0 0;
   transform-origin: 50% 50%;
-  transform:
-    rotate(var(--dna-halo-rotate))
-    scale(var(--dna-halo-scale));
-  transition:
-    background-position var(--dna-frame-duration) linear,
-    transform var(--dna-frame-duration) linear;
-  will-change: background-position, transform;
+  animation: dnaHaloFloat 46s linear infinite;
+  will-change: transform;
 }
 
 .left-header {
@@ -255,12 +224,11 @@ button:focus-visible {
     100% 100%,
     auto;
   background-position:
-    var(--header-stripe-pos),
+    0 0,
     50% 50%,
     0 0,
     0 0;
-  transition: background-position var(--dna-frame-duration) linear;
-  will-change: background-position;
+  animation: headerStripeDrift 18s linear infinite;
 }
 
 .left-header::before {
@@ -285,11 +253,10 @@ button:focus-visible {
     100% 100%,
     auto;
   background-position:
-    var(--header-tab-stripe-pos),
+    0 0,
     0 0,
     0 0;
-  transition: background-position var(--dna-frame-duration) linear;
-  will-change: background-position;
+  animation: headerTabStripeDrift 14s linear infinite;
   border-top-right-radius: 32px;
   border-bottom-right-radius: 32px;
   box-shadow:
@@ -698,6 +665,7 @@ button:focus-visible {
 
 .video-frame {
   position: relative;
+  contain: paint;
   overflow: hidden;
   background:
     radial-gradient(circle at 44% 34%, rgba(207, 206, 201, 0.08), transparent 28%),
@@ -749,7 +717,6 @@ button:focus-visible {
     linear-gradient(115deg, transparent 0 42%, rgba(207, 206, 201, 0.1) 48%, transparent 56%);
   background-size: auto, 240% 100%;
   animation: videoSweep 11s linear infinite;
-  mix-blend-mode: screen;
 }
 
 .video-vignette {
@@ -770,7 +737,7 @@ button:focus-visible {
   width: 646px;
   height: 100px;
   color: var(--beige);
-  font-size: 62px;
+  font-size: 48px;
   opacity: 0.24;
   background: rgba(177, 177, 154, 0.68);
   border-radius: 40px;
@@ -933,6 +900,54 @@ button:focus-visible {
 
   100% {
     background-position: 0 80px, 120px 0;
+  }
+}
+
+@keyframes dnaFloat {
+  0% {
+    transform: rotate(-18deg) translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: rotate(162deg) translate3d(0, -14px, 0) scale(1.015);
+  }
+
+  100% {
+    transform: rotate(342deg) translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes dnaHaloFloat {
+  0% {
+    transform: rotate(18deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(-162deg) scale(1.025);
+  }
+
+  100% {
+    transform: rotate(-342deg) scale(1);
+  }
+}
+
+@keyframes headerStripeDrift {
+  0% {
+    background-position: 0 0, 50% 50%, 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 192px -192px, 50% 50%, 0 0, 0 0;
+  }
+}
+
+@keyframes headerTabStripeDrift {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 144px -144px, 0 0, 0 0;
   }
 }
 
