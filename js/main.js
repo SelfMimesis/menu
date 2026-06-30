@@ -1,8 +1,8 @@
 const videoSources = {
-  base: "assets/01_E14_Food_Menu.mp4",
+  base: "assets/01_E14_Food_Menu.mp4?v=20260630-6",
   overlays: [
-    "assets/02_E14_Food_Menu.mp4",
-    "assets/03_E14_Food_Menu.mp4"
+    "assets/02_E14_Food_Menu.mp4?v=20260630-6",
+    "assets/03_E14_Food_Menu.mp4?v=20260630-6"
   ]
 };
 
