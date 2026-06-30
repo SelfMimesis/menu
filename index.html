@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TransrollinHyfa Menu</title>
-  <link rel="stylesheet" href="css/styles.css?v=20260630-2">
-  <script src="js/main.js?v=20260630-2" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=20260630-3">
+  <script src="js/main.js?v=20260630-3" defer></script>
 </head>
 <body>
   <main class="viewport" aria-label="TransrollinHyfa Menu">
@@ -93,8 +93,9 @@
 
       <section class="right-panel" aria-label="Reproductor principal y controles">
         <section class="video-frame no-media" id="videoFrame" aria-label="Pantalla de video">
-          <video class="video-layer is-active" id="videoA" muted playsinline preload="auto"></video>
-          <video class="video-layer" id="videoB" muted playsinline preload="auto"></video>
+          <video class="video-layer base-video" id="videoBase" muted playsinline preload="auto" loop></video>
+          <video class="video-layer overlay-video" id="videoOverlayA" muted playsinline preload="auto"></video>
+          <video class="video-layer overlay-video" id="videoOverlayB" muted playsinline preload="auto"></video>
 
           <div class="video-lines" aria-hidden="true"></div>
           <div class="video-vignette" aria-hidden="true"></div>
@@ -115,11 +116,11 @@
         </section>
 
         <footer class="control-bank" aria-label="Controles de reproduccion">
-          <button type="button" class="round-control is-active" data-video-index="0" aria-label="Reproducir video 1">01</button>
-          <button type="button" class="round-control" data-video-index="1" aria-label="Reproducir video 2">02</button>
-          <button type="button" class="round-control" data-video-index="2" aria-label="Reproducir video 3">03</button>
-          <button type="button" class="round-control" data-action="previous" aria-label="Video anterior">PR</button>
-          <button type="button" class="round-control" data-action="next" aria-label="Video siguiente">NX</button>
+          <button type="button" class="round-control is-active" data-action="sequence" aria-label="Activar secuencia visual">01</button>
+          <button type="button" class="round-control" data-action="sequence" aria-label="Activar secuencia visual">02</button>
+          <button type="button" class="round-control" data-action="sequence" aria-label="Activar secuencia visual">03</button>
+          <button type="button" class="round-control" data-action="sequence" aria-label="Activar secuencia visual">PR</button>
+          <button type="button" class="round-control" data-action="sequence" aria-label="Activar secuencia visual">NX</button>
           <button type="button" class="round-control" data-action="sequence" aria-label="Activar secuencia">SQ</button>
           <button type="button" class="round-control" data-action="restart" aria-label="Reiniciar video">RT</button>
           <button type="button" class="round-control" data-action="fullscreen" aria-label="Entrar en pantalla completa">FS</button>

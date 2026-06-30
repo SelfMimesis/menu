@@ -693,17 +693,25 @@ button:focus-visible {
 .video-layer {
   position: absolute;
   inset: 14px;
-  z-index: 1;
   width: calc(100% - 28px);
   height: calc(100% - 28px);
   object-fit: cover;
   opacity: 0;
   background: var(--main-bg);
-  transition: opacity 520ms ease;
+  transition: opacity 220ms ease;
 }
 
-.video-layer.is-active {
+.base-video {
+  z-index: 1;
+}
+
+.base-video.is-active,
+.overlay-video.is-visible {
   opacity: 1;
+}
+
+.overlay-video {
+  z-index: 2;
 }
 
 .video-lines {
@@ -777,6 +785,10 @@ button:focus-visible {
 
 .video-frame.no-media .status-plaque {
   opacity: 0.92;
+}
+
+.video-frame:not(.no-media) .status-plaque {
+  opacity: 0;
 }
 
 .video-rail {
