@@ -666,8 +666,6 @@ button:focus-visible {
 .video-frame {
   position: relative;
   contain: paint;
-  --video-crop-scale: 1.56;
-  --video-crop-y: -4.5%;
   overflow: hidden;
   background: var(--main-bg);
   border: 5px solid rgba(47, 47, 41, 0.54);
@@ -694,17 +692,16 @@ button:focus-visible {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transform: translateY(var(--video-crop-y)) scale(var(--video-crop-scale));
-  transform-origin: 100% 0;
+  object-fit: fill;
   opacity: 0;
   background: var(--main-bg);
+  pointer-events: none;
   transition: opacity 220ms ease;
   will-change: opacity;
 }
 
 .base-video {
-  z-index: 1;
+  z-index: 20;
 }
 
 .base-video.is-active,
@@ -713,7 +710,7 @@ button:focus-visible {
 }
 
 .overlay-video {
-  z-index: 2;
+  z-index: 21;
 }
 
 .video-lines {
@@ -735,6 +732,13 @@ button:focus-visible {
   z-index: 5;
   pointer-events: none;
   box-shadow: inset 0 0 95px rgba(47, 47, 41, 0.48);
+}
+
+.video-frame:not(.no-media) .video-lines,
+.video-frame:not(.no-media) .video-vignette,
+.video-frame:not(.no-media) .status-plaque,
+.video-frame:not(.no-media) .video-rail {
+  visibility: hidden;
 }
 
 .status-plaque {

@@ -1,8 +1,8 @@
 const videoSources = {
-  base: "assets/01_E14_Food_Menu.mp4?v=20260630-6",
+  base: "assets/01_E14_Food_Menu.mp4?v=20260630-8",
   overlays: [
-    "assets/02_E14_Food_Menu.mp4?v=20260630-6",
-    "assets/03_E14_Food_Menu.mp4?v=20260630-6"
+    "assets/02_E14_Food_Menu.mp4?v=20260630-8",
+    "assets/03_E14_Food_Menu.mp4?v=20260630-8"
   ]
 };
 
@@ -108,7 +108,7 @@ function setupControlActions({ baseVideo }) {
 
 function setupOverlayTriggers(kiosk, videoSystem) {
   kiosk.addEventListener("click", (event) => {
-    if (!event.target.closest("button, .menu-item, .menu-card, .panel-emblem, .video-rail")) {
+    if (!event.target.closest("button, .menu-item, .menu-card, .panel-emblem, .video-frame")) {
       return;
     }
 
