@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Food Menu Interface</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <main class="viewport" aria-label="Interfaz de menu retro futurista">
+    <section class="kiosk" id="kiosk" aria-label="Panel electronico de menu">
+      <aside class="left-panel" aria-label="Panel lateral de alimentos">
+        <header class="left-header">
+          <div class="header-tab">
+            <span>MENU</span>
+          </div>
+          <p class="header-code">JRMEJTF</p>
+        </header>
+
+        <div class="left-body">
+          <div class="scroll-control">
+            <button class="rail-button" type="button" data-scroll-menu="up" aria-label="Subir lista">
+              <span class="visually-hidden">Subir</span>
+            </button>
+            <div class="rail-track">
+              <span>ION</span>
+              <span>FLUX</span>
+              <span>MEAL</span>
+              <span>CORE</span>
+            </div>
+            <button class="rail-button" type="button" data-scroll-menu="down" aria-label="Bajar lista">
+              <span class="visually-hidden">Bajar</span>
+            </button>
+          </div>
+
+          <section class="menu-card" aria-label="Lista desplazable de comidas">
+            <ol class="menu-list" id="menuList">
+              <li><button type="button" class="menu-item"><span>Algae cube ramen</span><span>14.02</span></button></li>
+              <li><button type="button" class="menu-item"><span>Neon miso broth</span><span>08.55</span></button></li>
+              <li><button type="button" class="menu-item"><span>Orbital rice shell</span><span>17.88</span></button></li>
+              <li><button type="button" class="menu-item"><span>Silica bean tart</span><span>12.44</span></button></li>
+              <li><button type="button" class="menu-item"><span>Photon bao plate</span><span>09.22</span></button></li>
+              <li><button type="button" class="menu-item"><span>Quantum kelp noodle</span><span>11.06</span></button></li>
+              <li><button type="button" class="menu-item"><span>Solar tofu cube</span><span>13.55</span></button></li>
+              <li><button type="button" class="menu-item"><span>Vapor curry pulse</span><span>15.90</span></button></li>
+              <li><button type="button" class="menu-item"><span>Cryo citrus glaze</span><span>07.40</span></button></li>
+              <li><button type="button" class="menu-item"><span>Ion corn wafer</span><span>06.66</span></button></li>
+              <li><button type="button" class="menu-item"><span>Helix mushroom roll</span><span>18.10</span></button></li>
+              <li><button type="button" class="menu-item"><span>Plasma oat capsule</span><span>10.75</span></button></li>
+              <li><button type="button" class="menu-item"><span>Amber synth dumpling</span><span>16.25</span></button></li>
+              <li><button type="button" class="menu-item"><span>Zenith barley stack</span><span>08.20</span></button></li>
+              <li><button type="button" class="menu-item"><span>Comet melon jelly</span><span>05.95</span></button></li>
+              <li><button type="button" class="menu-item"><span>Lunar pepper broth</span><span>12.80</span></button></li>
+              <li><button type="button" class="menu-item"><span>Static noodle prism</span><span>14.70</span></button></li>
+              <li><button type="button" class="menu-item"><span>Memory grain stew</span><span>09.60</span></button></li>
+              <li><button type="button" class="menu-item"><span>Verdant protein slate</span><span>19.05</span></button></li>
+              <li><button type="button" class="menu-item"><span>Echo spice terrine</span><span>11.30</span></button></li>
+              <li><button type="button" class="menu-item"><span>Ceramic pear gel</span><span>07.10</span></button></li>
+              <li><button type="button" class="menu-item"><span>Atmos pea lattice</span><span>13.35</span></button></li>
+              <li><button type="button" class="menu-item"><span>Nova salt cracker</span><span>06.30</span></button></li>
+              <li><button type="button" class="menu-item"><span>Pulse cream capsule</span><span>10.15</span></button></li>
+            </ol>
+          </section>
+
+          <aside class="menu-notice" id="menuNotice" aria-live="polite" aria-atomic="true" aria-hidden="true">
+            <span class="notice-kicker">PLATO ELEGIDO</span>
+            <strong id="noticeDish">ALGAE CUBE RAMEN</strong>
+            <span class="notice-price" id="noticePrice">14.02</span>
+          </aside>
+
+          <nav class="side-actions" aria-label="Controles auxiliares">
+            <button type="button" class="micro-button is-active" data-panel-mode="01">ZRN JTFR</button>
+            <button type="button" class="micro-button" data-panel-mode="02">WAFR-OF JTFG</button>
+            <button type="button" class="micro-button" data-panel-mode="03">GRNJFU CLNFU</button>
+            <button type="button" class="micro-button" data-panel-mode="04">JYRF GLNFU</button>
+            <button type="button" class="micro-button" data-panel-mode="05">TGRFJUR</button>
+            <button type="button" class="micro-button" data-panel-mode="06">TZMTFT</button>
+          </nav>
+
+          <div class="bottom-tabs" aria-label="Accesos de panel">
+            <button type="button">CLNFU</button>
+            <button type="button">NTZUT</button>
+            <button type="button">CZTN</button>
+            <button type="button">TFTC</button>
+          </div>
+
+          <div class="panel-emblem" aria-hidden="true">
+            <span>JRMEJTF</span>
+          </div>
+        </div>
+      </aside>
+
+      <section class="right-panel" aria-label="Reproductor principal y controles">
+        <section class="video-frame no-media" id="videoFrame" aria-label="Pantalla de video">
+          <video class="video-layer is-active" id="videoA" muted playsinline preload="auto"></video>
+          <video class="video-layer" id="videoB" muted playsinline preload="auto"></video>
+
+          <div class="video-lines" aria-hidden="true"></div>
+          <div class="video-vignette" aria-hidden="true"></div>
+
+          <div class="status-plaque" id="statusPlaque" aria-live="polite">
+            <span>FOOD MENU</span>
+          </div>
+
+          <div class="video-rail" aria-label="Navegacion de video">
+            <button type="button" data-action="previous" aria-label="Video anterior">
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <div class="rail-fill" aria-hidden="true"></div>
+            <button type="button" data-action="next" aria-label="Video siguiente">
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+        </section>
+
+        <footer class="control-bank" aria-label="Controles de reproduccion">
+          <button type="button" class="round-control is-active" data-video-index="0" aria-label="Reproducir video 1">01</button>
+          <button type="button" class="round-control" data-video-index="1" aria-label="Reproducir video 2">02</button>
+          <button type="button" class="round-control" data-video-index="2" aria-label="Reproducir video 3">03</button>
+          <button type="button" class="round-control" data-action="previous" aria-label="Video anterior">PR</button>
+          <button type="button" class="round-control" data-action="next" aria-label="Video siguiente">NX</button>
+          <button type="button" class="round-control" data-action="sequence" aria-label="Activar secuencia">SQ</button>
+          <button type="button" class="round-control" data-action="restart" aria-label="Reiniciar video">RT</button>
+          <button type="button" class="round-control" data-action="fullscreen" aria-label="Entrar en pantalla completa">FS</button>
+        </footer>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
